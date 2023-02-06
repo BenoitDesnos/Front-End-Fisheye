@@ -37,6 +37,14 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
+.photographer_section a {
+  text-decoration: none;
+  transition: 0.2s;
+}
+.photographer_section a:focus {
+  transform: translateY(-20px);
+  transition: 0.2s;
+}
 .photographer_section article * {
   margin: 0;
 }
@@ -47,21 +55,30 @@ h1 {
   font-size: 36px;
   font-weight: 400;
 }
+.photographer_section article h3 {
+  color: #901c1c;
+  font-size: 20px;
+  font-weight: 400;
+}
+.photographer_section article p:first-of-type {
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+}
+.photographer_section article p {
+  font-size: 15px;
+  color: #757575;
+}
 
 .portrait__container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .photographer_section article img {
   height: 200px;
   width: 200px;
-}
-.portrait__hover {
-  top: 0;
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  display: block;
   border-radius: 50%;
-  background-color: transparent;
-  border: 1px solid black;
 }
