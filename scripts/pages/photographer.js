@@ -1,8 +1,12 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
+const submitButton = document.querySelector(
+  "#contact_modal > div > form > button"
+);
+const inputsList = document.querySelectorAll("form > div > input");
 const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
 
+const id = params.get("id");
+console.log(submitButton, inputsList);
 function displayPhotographerData({ photographers, media }) {
   // display data about phototgrapher
   const photographersSection = document.querySelector(".photograph-header");
@@ -21,10 +25,16 @@ function displayPhotographerData({ photographers, media }) {
 
   mediaFiltered.forEach((project) => {
     const medias = mediaFactory(project);
-
     const mediasDOM = medias.getMediasDOM();
     photographerMedias.appendChild(mediasDOM);
   });
 }
 
 getPhotographers();
+
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  inputsList.forEach((input) => {
+    console.log(input.name + ":", input.value);
+  });
+});

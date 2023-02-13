@@ -1,5 +1,4 @@
 function mediaFactory(data) {
-  console.log(data);
   const { id, photographerId, title, image, video, likes, date, price } = data;
   let picture;
   let mediaImg;
