@@ -4,6 +4,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 function displayPhotographerData({ photographers, media }) {
+  // display data about phototgrapher
   const photographersSection = document.querySelector(".photograph-header");
   photographers.forEach((photographer) => {
     if (photographer.id == id) {
@@ -12,14 +13,15 @@ function displayPhotographerData({ photographers, media }) {
       photographersSection.appendChild(userCardDOM);
     }
   });
-  const photographerMedias = document.querySelector(".photograph-medias");
+  // display project/media data of photographer
+  const photographerMedias = document.querySelector(
+    ".photographe__article__container"
+  );
   const mediaFiltered = media.filter((photo) => photo.photographerId == id);
 
-  console.log(mediaFiltered);
-  mediaFiltered.forEach((photo) => {
-    console.log(photo.photographerId, media);
-    const medias = mediaFactory(photo);
-    console.log(photographerMedias);
+  mediaFiltered.forEach((project) => {
+    const medias = mediaFactory(project);
+
     const mediasDOM = medias.getMediasDOM();
     photographerMedias.appendChild(mediasDOM);
   });

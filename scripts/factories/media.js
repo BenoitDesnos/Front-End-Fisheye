@@ -1,21 +1,30 @@
 function mediaFactory(data) {
-  /*  console.log(data); */
-  const { id, photographerId, title, image, likes, date, price } = data;
-  const picture = `assets/SamplePhotos/${photographerId}/${image}`;
-
+  console.log(data);
+  const { id, photographerId, title, image, video, likes, date, price } = data;
+  let picture;
+  let mediaImg;
   const article = document.createElement("article");
-  const mediaImg = document.createElement("img");
+
+  if (image !== undefined) {
+    picture = `assets/SamplePhotos/${photographerId}/${image}`;
+    mediaImg = document.createElement("img");
+  } else {
+    picture = `assets/SamplePhotos/${photographerId}/${video}`;
+    mediaImg = document.createElement("video");
+  }
   mediaImg.setAttribute("src", picture);
   mediaImg.setAttribute("alt", title);
 
-  /*   const titleElement = document.createElement("h3");
-  titleElement.textContent = city + ", " + country;
+  const titleElement = document.createElement("h3");
+  titleElement.textContent = title;
 
   const likesElement = document.createElement("span");
-  likesElement.textContent = city + ", " + country; */
+  likesElement.innerHTML = likes + ' <i class="fa-solid fa-heart"></i>';
 
   function getMediasDOM() {
     article.appendChild(mediaImg);
+    article.appendChild(titleElement);
+    article.appendChild(likesElement);
     return article;
   }
 

@@ -26,6 +26,8 @@ function photographerFactory(data) {
   const priceElement = document.createElement("p");
   priceElement.textContent = price + "€/jour";
 
+  const textContainer = document.createElement("div");
+
   function getUserCardDOM() {
     article.appendChild(linkToPhotographer);
     linkToPhotographer.appendChild(portraitElement);
@@ -36,11 +38,12 @@ function photographerFactory(data) {
     return article;
   }
   function getPhotographerDOM() {
-    article.appendChild(nameElement);
-    article.appendChild(locationElement);
-    article.appendChild(taglineElement);
+    article.appendChild(textContainer);
+    textContainer.appendChild(nameElement);
+    textContainer.appendChild(locationElement);
+    textContainer.appendChild(taglineElement);
     article.appendChild(portraitElement);
-    article.appendChild(priceElement);
+    /* article.appendChild(priceElement); */
     return article;
   }
   return {
