@@ -23,24 +23,30 @@
     <div class="photographe__medias">
       <div class="sort-container">
         <span id="sort-by">Trier par</span>
-        <ul id="sort-options">
+        <ul id="sort-options" role=”button”, aria-haspopup=”listbox”, aria-expanded>
           <i class="fa-solid fa-chevron-up"></i>
-          <li class="choosen-option">Popularité</li>
-          <li class="choosen-option">Date</li>
-          <li class="choosen-option">Titre</li>
+          <li class="choosen-option" role=”listbox”, aria-activedescendant, aria-selected, aria-labelledby>Popularité
+          </li>
+          <li class="choosen-option" role=”listbox”, aria-activedescendant, aria-selected, aria-labelledby>Date</li>
+          <li class="choosen-option" role=”listbox”, aria-activedescendant, aria-selected, aria-labelledby>Titre</li>
         </ul>
+        <!-- hidden attr if select -->
       </div>
       <div class="photographe__article__container">
 
       </div>
+    </div>
+    </div>
 
     </div>
   </main>
-  <div id="contact_modal">
+  <div id="contact_modal" aria-hidden="true" role="dialog">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <button id="closeBtn" onclick="closeModal()">
+          <img src="assets/icons/close.svg" />
+        </button>
       </header>
       <form>
         <div>
@@ -57,11 +63,17 @@
       </form>
     </div>
   </div>
-  <script src="scripts/factories/fetch.js"></script>
+  <div class="lightbox" aria-hidden="true" role="dialog">
+    <div id="lightboxContainer">
+
+    </div>
+  </div>
+  <script src="scripts/utils/fetch.js"></script>
   <script src="scripts/factories/photographer.js"></script>
   <script src="scripts/factories/media.js"></script>
   <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
+  <script src="scripts/utils/lightBox.js"></script>
   <script src="https://kit.fontawesome.com/0152501894.js" crossorigin="anonymous"></script>
 </body>
 
