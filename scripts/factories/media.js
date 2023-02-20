@@ -13,6 +13,7 @@ function mediaFactory(data) {
   }
   mediaImg.setAttribute("src", picture);
   mediaImg.setAttribute("alt", title);
+  mediaImg.setAttribute("onClick", `openLightbox()`);
   mediaImg.classList.add("linkToLightbox");
 
   const titleElement = document.createElement("h3");

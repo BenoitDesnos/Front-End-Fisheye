@@ -28,7 +28,7 @@ function displayPhotographerData({ photographers, media }) {
     const mediasDOM = medias.getMediasDOM();
     photographerMedias.appendChild(mediasDOM);
   });
-  displaylightbox();
+  openLightbox();
 }
 
 getPhotographers();
