@@ -236,20 +236,22 @@ form input {
   align-items: center;
   margin-left: 50px;
   margin-right: 50px;
-  max-width: 80%;
-  height: 70vh;
+  width: 80%;
+  max-width: 1050px;
+  height: 850px;
   position: relative;
 }
-#lightboxContainer p {
+#lightboxContainer span {
   position: absolute;
   left: 0px;
-  bottom: -62px;
+  bottom: -40px;
   color: #901c1c;
   font-size: 24px;
 }
 .lightbox img,
 .lightbox video {
   object-fit: cover;
+
   width: 100%;
   height: inherit;
 }
