@@ -1,14 +1,16 @@
 const links = document.getElementsByClassName("linkToLightbox");
+
 const leftArrow = document.querySelector(".lightbox__prev");
-console.log(leftArrow);
 const lightbox = document.querySelector(".lightbox");
-let globalIndex = 0;
+let currentIndex = 0;
 
 let displayContentLightbox = function (e) {
-  console.log(e);
   const image = document.createElement(e.target.localName);
+  console.log(e);
   image.setAttribute("src", e.target.attributes[0].value);
   image.setAttribute("alt", e.target.alt);
+  image.setAttribute("data-index", e.target.attributes[3].value);
+
   image.classList.add("lightboxImage");
   lightboxContainer.appendChild(image);
   lightbox.style.display = "flex";
@@ -16,33 +18,39 @@ let displayContentLightbox = function (e) {
   header.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "true");
 };
+let rightClick = function (e) {
+  const image = document.querySelector(".lightboxImage");
+  currentIndex = image.getAttribute("data-index");
+  console.log(typeof currentIndex);
+  currentIndex = parseInt(currentIndex) + 1;
+
+  image.setAttribute("src", links[currentIndex].attributes[0].value);
+  image.setAttribute("data-index", currentIndex);
+};
+let leftClick = function (e) {
+  const image = document.querySelector(".lightboxImage");
+  currentIndex = image.getAttribute("data-index");
+  console.log(typeof currentIndex);
+  currentIndex = parseInt(currentIndex) - 1;
+  image.setAttribute("src", links[currentIndex].attributes[0].value);
+  image.setAttribute("data-index", currentIndex);
+};
 
 function nextLightbox() {
   const rightArrow = document.querySelector(".lightbox__next");
-  rightArrow.addEventListener("click", () => {
-    const image = document.querySelector(".lightboxImage");
-    let i = globalIndex + 1;
-    console.log(i);
-    image.setAttribute("src", links[i].attributes[0].value);
-    globalIndex = i;
-  });
+  rightArrow.addEventListener("click", rightClick);
 }
 function prevLightbox() {
   const leftArrow = document.querySelector(".lightbox__prev");
-
-  leftArrow.addEventListener("click", () => {
-    const image = document.querySelector(".lightboxImage");
-    let i = globalIndex - 1;
-
-    image.setAttribute("src", links[i].attributes[0].value);
-    globalIndex = i;
-  });
+  leftArrow.addEventListener("click", leftClick);
 }
 
 function openLightbox() {
   nextLightbox();
+  prevLightbox();
   for (let i = 0; i < links.length; i++) {
-    /*   links[i].addEventListener("click", (e) => {
+    /* console.log(links.length);
+    links[i].addEventListener("click", (e) => {
       console.log(e);
       const image = document.createElement(e.target.localName);
       image.setAttribute("src", e.target.attributes[0].value);
@@ -54,10 +62,9 @@ function openLightbox() {
       header.setAttribute("aria-hidden", "true");
       main.setAttribute("aria-hidden", "true");
     }); */
+
     links[i].addEventListener("click", displayContentLightbox, false);
   }
-
-  prevLightbox();
 }
 function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");

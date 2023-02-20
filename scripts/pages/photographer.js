@@ -9,6 +9,7 @@ const id = params.get("id");
 console.log(submitButton, inputsList);
 function displayPhotographerData({ photographers, media }) {
   // display data about phototgrapher
+
   const photographersSection = document.querySelector(".photograph-header");
   photographers.forEach((photographer) => {
     if (photographer.id == id) {
@@ -24,7 +25,7 @@ function displayPhotographerData({ photographers, media }) {
   const mediaFiltered = media.filter((photo) => photo.photographerId == id);
 
   mediaFiltered.forEach((project) => {
-    const medias = mediaFactory(project);
+    const medias = mediaFactory(project, mediaFiltered);
     const mediasDOM = medias.getMediasDOM();
     photographerMedias.appendChild(mediasDOM);
   });
