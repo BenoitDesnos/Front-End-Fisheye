@@ -3,13 +3,14 @@ const leftArrow = document.querySelector(".lightbox__prev");
 const lightbox = document.querySelector(".lightbox");
 const rightArrow = document.querySelector(".lightbox__next");
 let currentIndex = 0;
+let array = [];
 
-let displayContentLightbox = function (e) {
+const displayContentLightbox = (e) => {
   const image = document.createElement(e.target.localName);
   console.log(e);
   image.setAttribute("src", e.target.attributes[0].value);
   image.setAttribute("alt", e.target.attributes[1].value);
-  image.setAttribute("data-index", e.target.attributes[3].value);
+  image.setAttribute("data-index", e.target.attributes[4].value);
   image.classList.add("lightboxImage");
 
   const span = document.createElement("span");
@@ -23,6 +24,7 @@ let displayContentLightbox = function (e) {
   header.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "true");
 };
+
 let rightClick = function (e) {
   const image = document.querySelector(".lightboxImage");
   console.log(links[currentIndex].localName);
@@ -45,6 +47,7 @@ let rightClick = function (e) {
     image.parentNode.replaceChild(video, image);
   } */
 };
+
 let leftClick = function (e) {
   const image = document.querySelector(".lightboxImage");
   const span = document.querySelector("#lightboxContainer > span");
@@ -67,10 +70,12 @@ function openLightbox() {
   rightArrow.addEventListener("click", rightClick);
   leftArrow.addEventListener("click", leftClick);
   for (let i = 0; i < links.length; i++) {
+    links[i].setAttribute("data-index", i);
     links[i].addEventListener("click", displayContentLightbox, false);
   }
   closeLightboxFn();
 }
+
 function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
   header.setAttribute("aria-hidden", "false");
