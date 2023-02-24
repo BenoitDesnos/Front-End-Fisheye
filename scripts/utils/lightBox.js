@@ -1,92 +1,132 @@
 const links = document.getElementsByClassName("linkToLightbox");
-const leftArrow = document.querySelector(".lightbox__prev");
 const lightbox = document.querySelector(".lightbox");
+const leftArrow = document.querySelector(".lightbox__prev");
 const rightArrow = document.querySelector(".lightbox__next");
-let currentIndex = 0;
-let array = [];
+const close = document.querySelector(".lightbox__close");
 
-const displayContentLightbox = (e) => {
-  const image = document.createElement(e.target.localName);
-  console.log(e);
-  image.setAttribute("src", e.target.attributes[0].value);
-  image.setAttribute("alt", e.target.attributes[1].value);
-  image.setAttribute("data-index", e.target.attributes[4].value);
-  image.classList.add("lightboxImage");
+let currentIndex;
+let currentMedia;
+let newMedia;
+let mediaTitle;
+/* -------------------- fn de gestion du contenu de la lightbox------------------- */
+// crée un élément dynamiquement selon le type de média passé en argument
+const createContentLightbox = (currentIndex, typeOfMedia) => {
+  newMedia = document.createElement(typeOfMedia);
+  mediaTitle = document.createElement("span");
+  // on récupère le média suivant ou précédent grace à currentIndex
+  currentMedia = document.querySelector(
+    `div.photographe__article__container > article:nth-child(${
+      currentIndex + 1
+    }) > ${typeOfMedia}`
+  );
+  // on recupère les attributs et les passons au nouveau média créé
+  newMedia.setAttribute("src", currentMedia.getAttribute("src"));
+  newMedia.setAttribute("alt", currentMedia.getAttribute("alt"));
+  newMedia.setAttribute("data-index", currentMedia.getAttribute("data-index"));
+  newMedia.classList.add("lightboxImage");
+  //créé titre du média
+  mediaTitle.textContent = currentMedia.getAttribute("alt");
+};
 
-  const span = document.createElement("span");
-  span.textContent = e.target.attributes[1].value;
-
-  lightboxContainer.appendChild(image);
-  lightboxContainer.appendChild(span);
-
+const displayContentLightbox = (e, typeOfMedia) => {
+  // on créé un média pour l'affichage
+  // si utilisation du scroll fleché
+  if (typeOfMedia) {
+    createContentLightbox(currentIndex, typeOfMedia);
+  }
+  // si ouverture lightbox
+  else {
+    currentIndex = parseInt(e.target.getAttribute("data-index"));
+    createContentLightbox(currentIndex, e.target.localName);
+  }
+  // append les éléments créés
+  lightboxContainer.appendChild(newMedia);
+  lightboxContainer.appendChild(mediaTitle);
+  // gestion du style et des attributs quand lightbox visible
+  ariaParameters(true);
   lightbox.style.display = "flex";
-  lightbox.setAttribute("aria-hidden", "false");
-  header.setAttribute("aria-hidden", "true");
-  main.setAttribute("aria-hidden", "true");
+  // close right & left controls
+  lightboxControls();
 };
 
-let rightClick = function (e) {
-  const image = document.querySelector(".lightboxImage");
-  console.log(links[currentIndex].localName);
+function removeContentLightBox() {
   const span = document.querySelector("#lightboxContainer > span");
-  currentIndex = image.getAttribute("data-index");
-  span.textContent = links[currentIndex].getAttribute("alt");
-
-  currentIndex = parseInt(currentIndex) + 1;
-  console.log(links[currentIndex]);
-  currentIndex >= links.length - 1
-    ? (rightArrow.style.display = "none")
-    : (leftArrow.style.display = "block");
-  image.setAttribute("src", links[currentIndex].attributes[0].value);
-  image.setAttribute("data-index", currentIndex);
-
-  /* if (links[currentIndex].localName === "video") {
-    const video = document.createElement("video");
-    video.innerHTML = image.innerHTML;
-    console.log(image.outerHTML);
-    image.parentNode.replaceChild(video, image);
-  } */
-};
-
-let leftClick = function (e) {
-  const image = document.querySelector(".lightboxImage");
-  const span = document.querySelector("#lightboxContainer > span");
-  currentIndex = image.getAttribute("data-index");
-  span.textContent = links[currentIndex].getAttribute("alt");
-  currentIndex = parseInt(currentIndex) - 1;
-  currentIndex <= 0
-    ? (leftArrow.style.display = "none")
-    : (rightArrow.style.display = "block");
-  image.setAttribute("src", links[currentIndex].attributes[0].value);
-  image.setAttribute("data-index", currentIndex);
-};
-
-function closeLightboxFn() {
-  const close = document.querySelector(".lightbox__close");
-  close.addEventListener("click", closeLightbox);
+  const media = document.querySelector(".lightboxImage");
+  media.remove();
+  span.remove();
 }
 
+const scrollContentLightbox = () => {
+  removeContentLightBox();
+  if (links[currentIndex].localName === "video") {
+    displayContentLightbox(null, "video");
+  } else {
+    displayContentLightbox(null, "img");
+  }
+};
+/* ------------------- fn de gestion des controls de la lightbox------------------ */
+
+function lightboxControls(params) {
+  rightArrow.addEventListener("click", scrollRight);
+  leftArrow.addEventListener("click", scrollLeft);
+  close.addEventListener("click", closeLightbox);
+
+  // inclusiv closing "Escape" key
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.getAttribute("aria-hidden") == "false" && e.key === "Escape") {
+      closeLightbox();
+    }
+  });
+}
+// fn permettant de lancer les eventlistener dans scripts > pages > photographer.js > displayPhotographerData()
 function openLightbox() {
-  rightArrow.addEventListener("click", rightClick);
-  leftArrow.addEventListener("click", leftClick);
   for (let i = 0; i < links.length; i++) {
     links[i].setAttribute("data-index", i);
     links[i].addEventListener("click", displayContentLightbox, false);
   }
-  closeLightboxFn();
 }
 
 function closeLightbox() {
-  lightbox.setAttribute("aria-hidden", "true");
-  header.setAttribute("aria-hidden", "false");
-  main.setAttribute("aria-hidden", "false");
+  removeContentLightBox();
+  ariaParameters(false);
   lightbox.style.display = "none";
-  const image = document.querySelector(".lightboxImage");
-  image.remove();
 }
 
-document.addEventListener("keydown", (e) => {
-  if (lightbox.getAttribute("aria-hidden") == "false" && e.key === "Escape") {
-    closeLightbox();
+const scrollRight = () => {
+  // gestion de l'index pour afficher les éléments suivants
+  getIndex();
+  currentIndex++;
+  currentIndex >= links.length - 1
+    ? (rightArrow.style.display = "none")
+    : (leftArrow.style.display = "block");
+  scrollContentLightbox();
+};
+
+const scrollLeft = () => {
+  // gestion de l'index pour afficher les éléments précédents
+  getIndex();
+  currentIndex--;
+  currentIndex <= 0
+    ? (leftArrow.style.display = "none")
+    : (rightArrow.style.display = "block");
+  scrollContentLightbox();
+};
+
+/* ------------------------------- fn générales ----------------------------- */
+function ariaParameters(isLightboxOpen) {
+  if (isLightboxOpen) {
+    lightbox.setAttribute("aria-hidden", "false");
+    header.setAttribute("aria-hidden", "true");
+    main.setAttribute("aria-hidden", "true");
+  } else {
+    lightbox.setAttribute("aria-hidden", "false");
+    header.setAttribute("aria-hidden", "true");
+    main.setAttribute("aria-hidden", "true");
   }
-});
+}
+//récupère index
+const getIndex = () => {
+  const media = document.querySelector(".lightboxImage");
+  currentIndex = media.getAttribute("data-index");
+  currentIndex = parseInt(currentIndex);
+};
