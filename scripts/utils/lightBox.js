@@ -1,5 +1,5 @@
 const links = document.getElementsByClassName("linkToLightbox");
-const lightbox = document.querySelector(".lightbox");
+const lightbox = document.querySelector("#lightbox");
 const leftArrow = document.querySelector(".lightbox__prev");
 const rightArrow = document.querySelector(".lightbox__next");
 const close = document.querySelector(".lightbox__close");
@@ -26,6 +26,7 @@ const createContentLightbox = (currentIndex, typeOfMedia) => {
   newMedia.classList.add("lightboxImage");
   //créé titre du média
   mediaTitle.textContent = currentMedia.getAttribute("alt");
+  console.log("created");
 };
 
 const displayContentLightbox = (e, typeOfMedia) => {
@@ -33,19 +34,25 @@ const displayContentLightbox = (e, typeOfMedia) => {
   // si utilisation du scroll fleché
   if (typeOfMedia) {
     createContentLightbox(currentIndex, typeOfMedia);
+    console.log("test1");
   }
   // si ouverture lightbox
   else {
     currentIndex = parseInt(e.target.getAttribute("data-index"));
+    console.log(currentIndex, e.target);
     createContentLightbox(currentIndex, e.target.localName);
   }
   // append les éléments créés
   lightboxContainer.appendChild(newMedia);
   lightboxContainer.appendChild(mediaTitle);
   // gestion du style et des attributs quand lightbox visible
+
   ariaParameters(true);
   lightbox.style.display = "flex";
+
   // close right & left controls
+  // gere le focus lorsque la modal est ouverte
+  focusModals("lightbox");
   lightboxControls();
 };
 
@@ -57,6 +64,7 @@ function removeContentLightBox() {
 }
 
 const scrollContentLightbox = () => {
+  console.log("scroll");
   removeContentLightBox();
   if (links[currentIndex].localName === "video") {
     displayContentLightbox(null, "video");
@@ -69,7 +77,7 @@ const scrollContentLightbox = () => {
 function lightboxControls(params) {
   rightArrow.addEventListener("click", scrollRight);
   leftArrow.addEventListener("click", scrollLeft);
-  close.addEventListener("click", closeLightbox);
+  /* close.addEventListener("click", closeLightbox); */
 
   // inclusiv closing "Escape" key
   document.addEventListener("keydown", (e) => {
@@ -82,7 +90,12 @@ function lightboxControls(params) {
 function openLightbox() {
   for (let i = 0; i < links.length; i++) {
     links[i].setAttribute("data-index", i);
-    links[i].addEventListener("click", displayContentLightbox, false);
+    links[i].addEventListener("click", (e) => displayContentLightbox(e), false);
+    links[i].addEventListener("keydown", (e) => {
+      if (lightbox.getAttribute("aria-hidden") == "true" && e.key === "Enter") {
+        displayContentLightbox(e);
+      }
+    });
   }
 }
 
@@ -90,6 +103,7 @@ function closeLightbox() {
   removeContentLightBox();
   ariaParameters(false);
   lightbox.style.display = "none";
+  links[currentIndex].focus();
 }
 
 const scrollRight = () => {
@@ -119,9 +133,9 @@ function ariaParameters(isLightboxOpen) {
     header.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
   } else {
-    lightbox.setAttribute("aria-hidden", "false");
-    header.setAttribute("aria-hidden", "true");
-    main.setAttribute("aria-hidden", "true");
+    lightbox.setAttribute("aria-hidden", "true");
+    header.setAttribute("aria-hidden", "false");
+    main.setAttribute("aria-hidden", "false");
   }
 }
 //récupère index

@@ -1,9 +1,6 @@
 function mediaFactory(data, array) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
-  /*  let index;
-  array.forEach((el, i) => {
-    el.id === id ? (index = i) : null;
-  }); */
+
   let picture;
   let mediaImg;
   const article = document.createElement("article");
@@ -17,8 +14,8 @@ function mediaFactory(data, array) {
   }
   mediaImg.setAttribute("src", picture);
   mediaImg.setAttribute("alt", title);
-  mediaImg.setAttribute("onClick", `openLightbox()`);
-  /* mediaImg.setAttribute("data-index", index); */
+  mediaImg.setAttribute("tabindex", "0");
+
   mediaImg.classList.add("linkToLightbox");
 
   const titleElement = document.createElement("h3");

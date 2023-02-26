@@ -41,33 +41,41 @@
     </div>
   </main>
   <div id="contact_modal" aria-hidden="true" role="dialog">
-    <div class="modal">
+    <div id="modal">
       <header>
         <h2>Contactez-moi</h2>
         <button id="closeBtn" onclick="closeModal()">
-          <img src="assets/icons/close.svg" />
+          <img src="assets/icons/close.svg" alt="close image" />
         </button>
       </header>
       <form>
         <div>
-          <label for="prenom">Prénom </label>
-          <input type="text" id="prenom" name="prenom" required minlength="2" maxlength="60" size="10">
-          <label for="nom">Nom </label>
-          <input type="text" id="nom" name="nom" required minlength="2" maxlength="60" size="10">
+          <label for="First name">Prénom </label>
+          <input type="text" name="First name" id="prenom" required minlength="2" maxlength="60" size="10">
+          <label for="Last name">Nom </label>
+          <input type="text" name="Last name" id="nom" required minlength="2" maxlength="60" size="10">
           <label for="email">Email </label>
-          <input type="email" id="email" name="email" required>
-          <label for="message">Votre message </label>
-          <input type="text" id="message" name="message" required>
+          <input type="email" name="email" id="email" required>
+          <label for="Your message">Votre message </label>
+          <input type="text" name="Your message" id="message" required>
         </div>
         <button type="submit" class="contact_button">Envoyer</button>
       </form>
     </div>
   </div>
-  <div class="lightbox" aria-hidden="true" role="dialog">
+  <div id="lightbox" aria-hidden="true" role="dialog">
     <div id="lightboxContainer">
-      <i class="lightbox__close fa-solid fa-xmark"></i>
-      <i class="lightbox__next fa-solid fa-chevron-right"></i>
-      <i class="lightbox__prev fa-solid fa-chevron-left"></i>
+      <button class="lightbox__prev">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="lightbox__next">
+        <i class=" fa-solid fa-chevron-right"></i>
+      </button>
+      <button class="lightbox__close">
+        <i class=" fa-solid fa-xmark"></i>
+      </button>
+
+
     </div>
   </div>
   <script src="scripts/utils/fetch.js"></script>
@@ -75,6 +83,7 @@
   <script src="scripts/factories/media.js"></script>
   <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
+  <script src="scripts/utils/focusModals.js"></script>
   <script src="scripts/utils/lightBox.js"></script>
   <script src="https://kit.fontawesome.com/0152501894.js" crossorigin="anonymous"></script>
 </body>

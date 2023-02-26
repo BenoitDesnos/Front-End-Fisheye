@@ -6,7 +6,7 @@ const inputsList = document.querySelectorAll("form > div > input");
 const params = new URLSearchParams(window.location.search);
 
 const id = params.get("id");
-console.log(submitButton, inputsList);
+
 function displayPhotographerData({ photographers, media }) {
   // display data about phototgrapher
 
