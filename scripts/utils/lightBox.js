@@ -8,6 +8,7 @@ let currentIndex;
 let currentMedia;
 let newMedia;
 let mediaTitle;
+
 /* -------------------- fn de gestion du contenu de la lightbox------------------- */
 // crée un élément dynamiquement selon le type de média passé en argument
 const createContentLightbox = (currentIndex, typeOfMedia) => {
@@ -49,9 +50,9 @@ const displayContentLightbox = (e, typeOfMedia) => {
   lightbox.style.display = "flex";
 
   // close right & left controls
+  lightboxControls();
   // gere le focus lorsque la modal est ouverte
   focusModals("lightbox");
-  lightboxControls();
 };
 
 function removeContentLightBox() {
@@ -91,7 +92,6 @@ function openLightbox() {
     links[i].addEventListener("click", (e) => displayContentLightbox(e), false);
     links[i].addEventListener("keydown", (e) => {
       if (lightbox.getAttribute("aria-hidden") == "true" && e.key === "Enter") {
-        // to prevent
         e.preventDefault();
         displayContentLightbox(e);
       }
@@ -103,6 +103,7 @@ function closeLightbox() {
   removeContentLightBox();
   ariaParameters(false);
   lightbox.style.display = "none";
+  console.log(links[currentIndex]);
   links[currentIndex].focus();
 }
 

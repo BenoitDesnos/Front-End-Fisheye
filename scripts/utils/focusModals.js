@@ -26,7 +26,6 @@ function focusModals(id) {
         e.preventDefault();
       }
     }
-    e.stopPropagation();
   });
 
   console.log(firstFocusableElement);

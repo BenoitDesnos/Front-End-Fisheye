@@ -4,9 +4,7 @@ const submitButton = document.querySelector(
 );
 const inputsList = document.querySelectorAll("form > div > input");
 const likesContainer = document.getElementById("total__likes__container");
-
 const params = new URLSearchParams(window.location.search);
-
 const id = params.get("id");
 
 function displayPhotographerData({ photographers, media }) {
@@ -17,7 +15,7 @@ function displayPhotographerData({ photographers, media }) {
     if (photographer.id == id) {
       const photographerModel = photographerFactory(photographer);
       const userCardDOM = photographerModel.getPhotographerDOM();
-      console.log(userCardDOM);
+
       photographersSection.appendChild(userCardDOM);
     }
   });
@@ -28,7 +26,6 @@ function displayPhotographerData({ photographers, media }) {
   const mediaFiltered = media.filter((project) => project.photographerId == id);
 
   mediaFiltered.forEach((project, index) => {
-    console.log(index);
     const medias = mediaFactory(project, mediaFiltered.length, index);
     const mediasDOM = medias.getMediasDOM();
 
@@ -36,6 +33,7 @@ function displayPhotographerData({ photographers, media }) {
   });
   openLightbox();
   addLike();
+  sortProjects();
 }
 
 getPhotographers();
@@ -67,4 +65,25 @@ function addLike() {
       { once: true }
     );
   }
+}
+
+function sortProjects(params) {
+  const optionContainer = document.getElementById("sort-options");
+  const options = document.querySelectorAll(".choosen-option");
+  console.log(optionContainer);
+
+  optionContainer.addEventListener("click", (e) => {
+    if (optionContainer.style.height === "65px") {
+      optionContainer.style.height = "180px";
+      options[0].style.borderBottom = "white solid 1px";
+      options[1].style.display = "block";
+      options[2].style.display = "block";
+      console.log(optionContainer.style.height);
+    } else {
+      optionContainer.style.height = "65px";
+      options[0].style.border = "none";
+      options[1].style.display = "none";
+      options[2].style.display = "none";
+    }
+  });
 }

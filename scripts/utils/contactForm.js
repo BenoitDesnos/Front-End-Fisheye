@@ -22,8 +22,7 @@ function closeModal() {
   header.setAttribute("aria-hidden", "false");
   main.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "visible";
-
-  header.focus();
+  contactButton.focus();
 }
 
 document.addEventListener("keydown", (e) => {
