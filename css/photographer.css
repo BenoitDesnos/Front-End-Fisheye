@@ -69,9 +69,14 @@ main {
 .sort-container {
   display: flex;
 }
-.photographe__medias span {
+.like__button {
   font-size: 18px;
   font-weight: 700;
+  padding: 0;
+}
+.like__button p {
+  margin: 0;
+  margin-right: 5px;
 }
 #sort-options {
   background-color: #911c1c;
@@ -123,7 +128,7 @@ main {
   height: 300px;
 }
 .photographe__article__container article h3,
-.photographe__article__container article span {
+.like__button {
   position: absolute;
   bottom: -35px;
   color: #901c1c;
@@ -135,10 +140,14 @@ main {
   color: #901c1c;
   font-weight: 400;
 }
-.photographe__article__container article span {
+.like__button {
   right: 0px;
+  display: flex;
   font-size: 24px;
   font-weight: 500;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 /* modal */
@@ -276,4 +285,33 @@ form input {
   left: -50px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* gestion des likes */
+
+#total__likes__container {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  bottom: 0;
+  right: 36px;
+  width: 300px;
+  height: 60px;
+  background-color: #db8876;
+  border-radius: 5px 5px 0px 0px;
+}
+#total__likes__container p {
+  margin: 0;
+  margin-right: 5px;
+}
+#total__likes__container span {
+  display: flex;
+  position: relative;
+}
+#total__likes__container i {
+  margin-top: 3px;
 }

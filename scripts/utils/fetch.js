@@ -5,7 +5,6 @@ function getPhotographers() {
       switch (window.location.pathname) {
         case "/":
           displayHomeData(data);
-
           break;
         case "/photographer.html":
           displayPhotographerData(data);

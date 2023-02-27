@@ -1,9 +1,10 @@
 let photographerName = "";
+
 function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   photographerName = name;
-  const picture = `assets/photographers/${portrait}`;
 
+  const picture = `assets/photographers/${portrait}`;
   const article = document.createElement("article");
 
   const linkToPhotographer = document.createElement("a");
@@ -38,13 +39,14 @@ function photographerFactory(data) {
     article.appendChild(priceElement);
     return article;
   }
+
   function getPhotographerDOM() {
     article.appendChild(textContainer);
     textContainer.appendChild(nameElement);
     textContainer.appendChild(locationElement);
     textContainer.appendChild(taglineElement);
     article.appendChild(portraitElement);
-    /* article.appendChild(priceElement); */
+    likesContainer.appendChild(priceElement);
     return article;
   }
   return {

@@ -26,7 +26,6 @@ const createContentLightbox = (currentIndex, typeOfMedia) => {
   newMedia.classList.add("lightboxImage");
   //créé titre du média
   mediaTitle.textContent = currentMedia.getAttribute("alt");
-  console.log("created");
 };
 
 const displayContentLightbox = (e, typeOfMedia) => {
@@ -34,7 +33,6 @@ const displayContentLightbox = (e, typeOfMedia) => {
   // si utilisation du scroll fleché
   if (typeOfMedia) {
     createContentLightbox(currentIndex, typeOfMedia);
-    console.log("test1");
   }
   // si ouverture lightbox
   else {
@@ -74,10 +72,10 @@ const scrollContentLightbox = () => {
 };
 /* ------------------- fn de gestion des controls de la lightbox------------------ */
 
-function lightboxControls(params) {
+function lightboxControls() {
   rightArrow.addEventListener("click", scrollRight);
   leftArrow.addEventListener("click", scrollLeft);
-  /* close.addEventListener("click", closeLightbox); */
+  close.addEventListener("click", closeLightbox);
 
   // inclusiv closing "Escape" key
   document.addEventListener("keydown", (e) => {
@@ -93,6 +91,8 @@ function openLightbox() {
     links[i].addEventListener("click", (e) => displayContentLightbox(e), false);
     links[i].addEventListener("keydown", (e) => {
       if (lightbox.getAttribute("aria-hidden") == "true" && e.key === "Enter") {
+        // to prevent
+        e.preventDefault();
         displayContentLightbox(e);
       }
     });
