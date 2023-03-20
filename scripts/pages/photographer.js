@@ -66,24 +66,3 @@ function addLike() {
     );
   }
 }
-
-function sortProjects(params) {
-  const optionContainer = document.getElementById("sort-options");
-  const options = document.querySelectorAll(".choosen-option");
-  console.log(optionContainer);
-
-  optionContainer.addEventListener("click", (e) => {
-    if (optionContainer.style.height === "65px") {
-      optionContainer.style.height = "180px";
-      options[0].style.borderBottom = "white solid 1px";
-      options[1].style.display = "block";
-      options[2].style.display = "block";
-      console.log(optionContainer.style.height);
-    } else {
-      optionContainer.style.height = "65px";
-      options[0].style.border = "none";
-      options[1].style.display = "none";
-      options[2].style.display = "none";
-    }
-  });
-}

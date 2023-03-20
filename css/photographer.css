@@ -83,6 +83,7 @@ main {
 }
 #sort-options {
   background-color: #911c1c;
+  min-width: 165px;
   list-style-type: none;
   margin: 0;
   color: white;

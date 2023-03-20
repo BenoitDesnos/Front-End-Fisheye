@@ -6,6 +6,7 @@ function mediaFactory(data, lengthArray, index) {
   let picture;
   let mediaImg;
   const article = document.createElement("article");
+  article.setAttribute("data-date", date);
 
   if (image) {
     picture = `assets/SamplePhotos/${photographerId}/${image}`;
