@@ -84,6 +84,7 @@ main {
 #sort-options {
   background-color: #911c1c;
   min-width: 165px;
+  height: 65px;
   list-style-type: none;
   margin: 0;
   color: white;
@@ -91,7 +92,6 @@ main {
   margin-left: 25px;
   border-radius: 5px;
   position: relative;
-  height: 180px;
   z-index: 3;
 }
 #sort-options i {
@@ -107,7 +107,13 @@ main {
   padding-right: 60px;
   padding-left: 10px;
   cursor: pointer;
+  display: none;
 }
+.choosen-option:nth-child(2) {
+  display: block;
+  border-bottom: none;
+}
+
 .choosen-option:last-child {
   border-bottom: none;
 }
