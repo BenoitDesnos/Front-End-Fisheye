@@ -42,6 +42,9 @@ const displayContentLightbox = (e, typeOfMedia) => {
   else {
     currentIndex = parseInt(e.target.getAttribute("data-index"));
     createContentLightbox(currentIndex, e.target.localName);
+    console.log(currentIndex);
+    currentIndex === 0 ? hideLeftArrow() : null;
+    currentIndex === links.length - 1 ? hideRightArrow() : null;
   }
   // append les éléments créés
   lightboxContainer.appendChild(newMedia);
@@ -108,14 +111,23 @@ function closeLightbox() {
   console.log(links[currentIndex]);
   links[currentIndex].focus();
 }
-
+function hideRightArrow() {
+  console.log(links.length);
+  currentIndex >= links.length - 1
+    ? (rightArrow.style.display = "none")
+    : (leftArrow.style.display = "block");
+}
+function hideLeftArrow() {
+  console.log(links.length);
+  currentIndex <= 0
+    ? (leftArrow.style.display = "none")
+    : (rightArrow.style.display = "block");
+}
 const scrollRight = () => {
   // gestion de l'index pour afficher les éléments suivants
   getIndex();
   currentIndex++;
-  currentIndex >= links.length - 1
-    ? (rightArrow.style.display = "none")
-    : (leftArrow.style.display = "block");
+  hideRightArrow();
   scrollContentLightbox();
 };
 
@@ -123,9 +135,7 @@ const scrollLeft = () => {
   // gestion de l'index pour afficher les éléments précédents
   getIndex();
   currentIndex--;
-  currentIndex <= 0
-    ? (leftArrow.style.display = "none")
-    : (rightArrow.style.display = "block");
+  hideLeftArrow();
   scrollContentLightbox();
 };
 
