@@ -45,13 +45,13 @@ function toggleSortElement() {
 function switchProjects(sortText) {
   switch (sortText) {
     case "Titre":
-      sortByTitles();
+      sortBy("Title", getTitle);
       break;
     case "Date":
-      sortByDates();
+      sortBy("Date", getDate);
       break;
     case "Popularité":
-      sortByLikes();
+      sortBy("Popularity", getLikes);
       break;
 
     default:
@@ -59,16 +59,42 @@ function switchProjects(sortText) {
   }
 }
 
-function sortByLikes() {
+function sortBy(sortType, elementToSort) {
   const parent = document.querySelector(".photographe__article__container");
   const articles = document.querySelectorAll(
     ".photographe__article__container > article"
   );
+
   Array.from(articles)
     .sort(function (a, b) {
-      return getPrice(b) - getPrice(a);
+      return sortType === "Date"
+        ? elementToSort(a) - elementToSort(b)
+        : sortType === "Popularity"
+        ? elementToSort(b) - elementToSort(a)
+        : sortType === "Title" && elementToSort(b) > elementToSort(a)
+        ? -1
+        : 1;
     })
-    .forEach(function (el) {
+    .map(function (el, index) {
+      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
+      dataIndexToUpdate.setAttribute("data-index", index);
+      parent.appendChild(el);
+      return dataIndexToUpdate;
+    });
+}
+/* function sortByLikes() {
+  const parent = document.querySelector(".photographe__article__container");
+  const articles = document.querySelectorAll(
+    ".photographe__article__container > article"
+  );
+
+  Array.from(articles)
+    .sort(function (a, b) {
+      return getLikes(b) - getLikes(a);
+    })
+    .forEach(function (el, index) {
+      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
+      dataIndexToUpdate.setAttribute("data-index", index);
       parent.appendChild(el);
     });
 }
@@ -81,7 +107,9 @@ function sortByDates() {
     .sort(function (a, b) {
       return getDate(a) - getDate(b);
     })
-    .forEach(function (el) {
+    .forEach(function (el, index) {
+      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
+      dataIndexToUpdate.setAttribute("data-index", index);
       parent.appendChild(el);
     });
 }
@@ -94,12 +122,14 @@ function sortByTitles() {
     .sort(function (a, b) {
       return getTitle(b) > getTitle(a) ? -1 : 1;
     })
-    .forEach(function (el) {
+    .forEach(function (el, index) {
+      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
+      dataIndexToUpdate.setAttribute("data-index", index);
       parent.appendChild(el);
     });
-}
+} */
 
-function getPrice(article) {
+function getLikes(article) {
   return Number(article.querySelector(".like__button > .likes").textContent);
 }
 function getDate(article) {

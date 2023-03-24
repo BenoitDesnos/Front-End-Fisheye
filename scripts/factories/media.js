@@ -4,30 +4,32 @@ function mediaFactory(data, lengthArray, index) {
   totalLikes += likes;
 
   let picture;
-  let mediaImg;
+  let media;
   const article = document.createElement("article");
   article.setAttribute("data-date", date);
 
   if (image) {
     picture = `assets/SamplePhotos/${photographerId}/${image}`;
-    mediaImg = document.createElement("img");
+    media = document.createElement("img");
   } else {
     picture = `assets/SamplePhotos/${photographerId}/${video}`;
-    mediaImg = document.createElement("video");
+    media = document.createElement("video");
   }
-  mediaImg.setAttribute("src", picture);
-  mediaImg.setAttribute("alt", title);
-  mediaImg.setAttribute("tabindex", "0");
-  mediaImg.classList.add("linkToLightbox");
+  media.setAttribute("src", picture);
+  media.setAttribute("alt", title);
+  media.setAttribute("title", title);
+  media.setAttribute("tabindex", "0");
+  media.classList.add("linkToLightbox");
 
   const titleElement = document.createElement("h3");
   titleElement.textContent = title;
 
   const likesElement = document.createElement("button");
-  likesElement.innerHTML = `<p class="likes">${likes}</p> <i class="fa-solid fa-heart"></i>`;
+  likesElement.innerHTML = `<p class="likes likeRef">${likes}</p> <i class="fa-solid fa-heart likeRef"></i>`;
   likesElement.setAttribute("class", "like__button");
+  likesElement.setAttribute("title", title);
 
-  // create element when its last
+  // create element when in last loop.
   let totalLikesElement;
   if (index == lengthArray - 1) {
     totalLikesElement = document.createElement("span");
@@ -35,7 +37,7 @@ function mediaFactory(data, lengthArray, index) {
   }
 
   function getMediasDOM() {
-    article.appendChild(mediaImg);
+    article.appendChild(media);
     article.appendChild(titleElement);
     article.appendChild(likesElement);
     totalLikesElement ? likesContainer.appendChild(totalLikesElement) : null;

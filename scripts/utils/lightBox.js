@@ -2,7 +2,7 @@ const links = document.getElementsByClassName("linkToLightbox");
 const lightbox = document.querySelector("#lightbox");
 const leftArrow = document.querySelector(".lightbox__prev");
 const rightArrow = document.querySelector(".lightbox__next");
-const close = document.querySelector(".lightbox__close");
+const lightBoxClose = document.querySelector(".lightbox__close");
 
 let currentIndex;
 let currentMedia;
@@ -14,19 +14,22 @@ let mediaTitle;
 const createContentLightbox = (currentIndex, typeOfMedia) => {
   newMedia = document.createElement(typeOfMedia);
   mediaTitle = document.createElement("span");
-  // on récupère le média suivant ou précédent grace à currentIndex
-  currentMedia = document.querySelector(
+  // on récupère le média qui contient les attributs suivant ou précédent grace à currentIndex
+  const attributesContainer = document.querySelector(
     `div.photographe__article__container > article:nth-child(${
       currentIndex + 1
     }) > ${typeOfMedia}`
   );
   // on recupère les attributs et les passons au nouveau média créé
-  newMedia.setAttribute("src", currentMedia.getAttribute("src"));
-  newMedia.setAttribute("alt", currentMedia.getAttribute("alt"));
-  newMedia.setAttribute("data-index", currentMedia.getAttribute("data-index"));
+  newMedia.setAttribute("src", attributesContainer.getAttribute("src"));
+  newMedia.setAttribute("alt", attributesContainer.getAttribute("alt"));
+  newMedia.setAttribute(
+    "data-index",
+    attributesContainer.getAttribute("data-index")
+  );
   newMedia.classList.add("lightboxImage");
   //créé titre du média
-  mediaTitle.textContent = currentMedia.getAttribute("alt");
+  mediaTitle.textContent = attributesContainer.getAttribute("alt");
 };
 
 const displayContentLightbox = (e, typeOfMedia) => {
@@ -38,7 +41,6 @@ const displayContentLightbox = (e, typeOfMedia) => {
   // si ouverture lightbox
   else {
     currentIndex = parseInt(e.target.getAttribute("data-index"));
-    console.log(currentIndex, e.target);
     createContentLightbox(currentIndex, e.target.localName);
   }
   // append les éléments créés
@@ -76,7 +78,7 @@ const scrollContentLightbox = () => {
 function lightboxControls() {
   rightArrow.addEventListener("click", scrollRight);
   leftArrow.addEventListener("click", scrollLeft);
-  close.addEventListener("click", closeLightbox);
+  lightBoxClose.addEventListener("click", closeLightbox);
 
   // inclusiv closing "Escape" key
   document.addEventListener("keydown", (e) => {
@@ -89,7 +91,7 @@ function lightboxControls() {
 function openLightbox() {
   for (let i = 0; i < links.length; i++) {
     links[i].setAttribute("data-index", i);
-    links[i].addEventListener("click", (e) => displayContentLightbox(e), false);
+    links[i].addEventListener("click", (e) => displayContentLightbox(e), null);
     links[i].addEventListener("keydown", (e) => {
       if (lightbox.getAttribute("aria-hidden") == "true" && e.key === "Enter") {
         e.preventDefault();
