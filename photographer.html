@@ -23,12 +23,18 @@
     <div class="photographe__medias">
       <div class="sort-container">
         <span id="sort-by">Trier par</span>
-        <ul id="sort-options" role=”button”, aria-haspopup=”listbox”, aria-expanded>
-          <i class="fa-solid fa-chevron-up"></i>
-          <li class="choosen-option" role=”listbox” aria-activedescendant, aria-selected, aria-labelledby>Date</li>
-          <li class="choosen-option" role=”listbox” aria-activedescendant, aria-selected, aria-labelledby>Popularité</li>
-          <li class="choosen-option" role=”listbox” aria-activedescendant, aria-selected, aria-labelledby>Titre</li>
-        </ul>
+        <div>
+
+          <input type="button" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded
+          role="button" id="sort-options-button">
+          
+          <ul id="sort-options" role="listbox", aria-haspopup=”listbox”, aria-expanded="false">
+            <li id="option1" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Date</li>
+            <li id="option2" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Popularité</li>
+            <li id="option3" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Titre</li>
+            <i class="fa-solid fa-chevron-up"></i>
+          </ul>
+        </div>
       </div>
       <div class="photographe__article__container">
 
@@ -74,6 +80,9 @@
       </button>
     </div>
   </div>
+
+
+
   <script src="scripts/utils/fetch.js"></script>
   <script src="scripts/factories/photographer.js"></script>
   <script src="scripts/factories/media.js"></script>
@@ -86,3 +95,4 @@
 </body>
 
 </html>
+

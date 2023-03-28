@@ -1,7 +1,8 @@
 const optionContainer = document.getElementById("sort-options");
+const menuTrigger = document.getElementById("sort-options-button");
 const options = document.querySelectorAll(".choosen-option");
 
-optionContainer.addEventListener("click", () => {
+menuTrigger.addEventListener("click", () => {
   toggleSortElement();
 });
 
@@ -19,12 +20,15 @@ chooseSortElement();
 function chooseSortElement() {
   options[0].addEventListener("click", (e) => {
     sortOptions(e);
+    toggleSortElement();
   });
   options[1].addEventListener("click", (e) => {
     sortOptions(e);
+    toggleSortElement();
   });
   options[2].addEventListener("click", (e) => {
     sortOptions(e);
+    toggleSortElement();
   });
 }
 

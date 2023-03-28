@@ -100,6 +100,15 @@ main {
   top: 26px;
   cursor: pointer;
 }
+#sort-options-button{
+  position: absolute;
+  width: 185px;
+  height: 65px;
+  z-index: 5;
+  background-color: transparent;
+  margin-left: 25px;
+  border: none;
+}
 .choosen-option {
   border-bottom: white solid 1px;
   padding-top: 23px;
@@ -108,13 +117,16 @@ main {
   padding-left: 10px;
   cursor: pointer;
   display: none;
+  background-color: transparent;
+  color: white;
+ 
 }
-.choosen-option:nth-child(2) {
+.choosen-option:nth-child(1) {
   display: block;
   border-bottom: none;
 }
 
-.choosen-option:last-child {
+.choosen-option:nth-child(3) {
   border-bottom: none;
 }
 
