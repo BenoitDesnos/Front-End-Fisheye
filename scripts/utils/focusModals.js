@@ -8,17 +8,17 @@ function focusModals(id) {
   lastFocusableElement.focus();
   document.addEventListener("keydown", function (e) {
     let isTabPressed = e.key === "Tab";
+    let isArrowRightPressed = e.key === "ArrowRight";
+    let isArrowLeftPressed = e.key === "ArrowLeft";
+    let isShiftKeyPressed = e.shiftKey;
 
-    if (!isTabPressed) {
-      return;
-    }
-    if (e.shiftKey) {
+    if (isShiftKeyPressed || isArrowLeftPressed) {
       // if shift key pressed for shift + tab combination
       if (document.activeElement === firstFocusableElement) {
         lastFocusableElement.focus(); // add focus for the last focusable element
         e.preventDefault();
       }
-    } else {
+    } else if (isTabPressed || isArrowRightPressed) {
       // if tab key is pressed
       if (document.activeElement === lastFocusableElement) {
         // if focused has reached to last focusable element then focus first focusable element after pressing tab
@@ -27,6 +27,4 @@ function focusModals(id) {
       }
     }
   });
-
-  console.log(firstFocusableElement);
 }

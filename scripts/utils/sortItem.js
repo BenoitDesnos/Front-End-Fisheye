@@ -1,6 +1,7 @@
 const optionContainer = document.getElementById("sort-options");
 const menuTrigger = document.getElementById("sort-options-button");
 const options = document.querySelectorAll(".choosen-option");
+const toggleIcon = document.querySelector(".toggle-icon");
 
 menuTrigger.addEventListener("click", () => {
   toggleSortElement();
@@ -11,10 +12,8 @@ function sortOptions(e) {
   let oldSort = options[0].textContent;
   e.target.textContent = oldSort;
   options[0].textContent = newSort;
-
-  if (e.target.localName === "li") {
-    switchProjects(newSort);
-  }
+  switchProjects(newSort);
+  menuTrigger.focus();
 }
 chooseSortElement();
 function chooseSortElement() {
@@ -34,12 +33,16 @@ function chooseSortElement() {
 
 function toggleSortElement() {
   if (optionContainer.style.height === "180px") {
+    menuTrigger.setAttribute("aria-expanded", "false");
     optionContainer.style.height = "65px";
+    toggleIcon.style.transform = "rotate(0deg)";
     options[0].style.border = "none";
     options[1].style.display = "none";
     options[2].style.display = "none";
   } else {
+    menuTrigger.setAttribute("aria-expanded", "true");
     optionContainer.style.height = "180px";
+    toggleIcon.style.transform = "rotate(180deg)";
     options[0].style.borderBottom = "white solid 1px";
     options[1].style.display = "block";
     options[2].style.display = "block";
@@ -86,52 +89,6 @@ function sortBy(sortType, elementToSort) {
       return dataIndexToUpdate;
     });
 }
-/* function sortByLikes() {
-  const parent = document.querySelector(".photographe__article__container");
-  const articles = document.querySelectorAll(
-    ".photographe__article__container > article"
-  );
-
-  Array.from(articles)
-    .sort(function (a, b) {
-      return getLikes(b) - getLikes(a);
-    })
-    .forEach(function (el, index) {
-      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
-      dataIndexToUpdate.setAttribute("data-index", index);
-      parent.appendChild(el);
-    });
-}
-function sortByDates() {
-  const parent = document.querySelector(".photographe__article__container");
-  const articles = document.querySelectorAll(
-    ".photographe__article__container > article"
-  );
-  Array.from(articles)
-    .sort(function (a, b) {
-      return getDate(a) - getDate(b);
-    })
-    .forEach(function (el, index) {
-      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
-      dataIndexToUpdate.setAttribute("data-index", index);
-      parent.appendChild(el);
-    });
-}
-function sortByTitles() {
-  const parent = document.querySelector(".photographe__article__container");
-  const articles = document.querySelectorAll(
-    ".photographe__article__container > article"
-  );
-  Array.from(articles)
-    .sort(function (a, b) {
-      return getTitle(b) > getTitle(a) ? -1 : 1;
-    })
-    .forEach(function (el, index) {
-      const dataIndexToUpdate = el.querySelector(".linkToLightbox");
-      dataIndexToUpdate.setAttribute("data-index", index);
-      parent.appendChild(el);
-    });
-} */
 
 function getLikes(article) {
   return Number(article.querySelector(".like__button > .likes").textContent);

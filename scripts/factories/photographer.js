@@ -26,7 +26,7 @@ function photographerFactory(data) {
   const taglineElement = document.createElement("p");
   taglineElement.textContent = tagline;
 
-  const priceElement = document.createElement("p");
+  const priceElement = document.createElement("span");
   priceElement.textContent = price + "€/jour";
 
   const textContainer = document.createElement("div");

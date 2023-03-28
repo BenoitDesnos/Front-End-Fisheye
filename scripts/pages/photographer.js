@@ -54,25 +54,28 @@ function addLike() {
   );
 
   imageContainer.addEventListener("click", (e) => {
-    let button = e.target.closest("button") ? e.target.closest("button") : null;
-    if (button && !button.getAttribute("class").includes("liked")) {
-      if (
-        e.target.getAttribute("class") &&
-        e.target.getAttribute("class").includes("likeRef")
-      ) {
-        let index =
-          e.target.parentNode.previousSibling.previousSibling.getAttribute(
+    console.log(e.target.localName);
+    let button = e.target.closest("button")
+      ? e.target.closest("button")
+      : e.target.localName === "button"
+      ? e.target
+      : null;
+    if (button && !button.className.includes("liked")) {
+      let index = e.target.previousSibling.previousSibling.getAttribute(
+        "data-index"
+      )
+        ? e.target.previousSibling.previousSibling.getAttribute("data-index")
+        : e.target.parentNode.previousSibling.previousSibling.getAttribute(
             "data-index"
           );
 
-        let amountOfLikesProject = parseInt(likeButtons[index].textContent);
-        let amountOfLikes = parseInt(totalLikes.textContent);
-        amountOfLikesProject++;
-        amountOfLikes++;
-        likes[index].textContent = amountOfLikesProject;
-        totalLikes.textContent = amountOfLikes;
-        button.classList.add("liked");
-      }
+      let amountOfLikesProject = parseInt(likeButtons[index].textContent);
+      let amountOfLikes = parseInt(totalLikes.textContent);
+      amountOfLikesProject++;
+      amountOfLikes++;
+      likes[index].textContent = amountOfLikesProject;
+      totalLikes.textContent = amountOfLikes;
+      button.classList.add("liked");
     }
   });
 }

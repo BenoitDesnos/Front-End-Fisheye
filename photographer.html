@@ -23,17 +23,21 @@
     <div class="photographe__medias">
       <div class="sort-container">
         <span id="sort-by">Trier par</span>
-        <div>
+        <div id="sort-menu">
 
-          <input type="button" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded
-          role="button" id="sort-options-button">
-          
-          <ul id="sort-options" role="listbox", aria-haspopup=”listbox”, aria-expanded="false">
-            <li id="option1" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Date</li>
-            <li id="option2" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Popularité</li>
-            <li id="option3" class="choosen-option" aria-activedescendant="sort-options" aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox" >Titre</li>
-            <i class="fa-solid fa-chevron-up"></i>
-          </ul>
+          <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" id="sort-options-button"><i
+              class="fa-solid fa-chevron-down toggle-icon"></i> </button>
+
+
+          <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
+            <button id="option1" class="choosen-option" aria-activedescendant="sort-options"
+              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Date</button>
+            <button id="option2" class="choosen-option" aria-activedescendant="sort-options"
+              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Popularité</button>
+            <button id="option3" class="choosen-option" aria-activedescendant="sort-options"
+              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Titre</button>
+
+          </div>
         </div>
       </div>
       <div class="photographe__article__container">
@@ -49,7 +53,7 @@
       <header>
         <h2 id="modal__title">Contactez-moi</h2>
         <button id="closeBtn" onclick="closeModal()">
-          <img src="assets/icons/close.svg" alt="close image" />
+          <img src="assets/icons/close.svg" alt="closing element" />
         </button>
       </header>
       <form>
@@ -69,11 +73,11 @@
   </div>
   <div id="lightbox" aria-hidden="true" role="dialog">
     <div id="lightboxContainer">
-      <button class="lightbox__prev" aria-label="fleche gauche">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
       <button class="lightbox__close" aria-label="bouton de fermeture">
         <i class=" fa-solid fa-xmark"></i>
+      </button>
+      <button class="lightbox__prev" aria-label="fleche gauche">
+        <i class="fa-solid fa-chevron-left"></i>
       </button>
       <button class="lightbox__next" aria-label="fleche droite">
         <i class=" fa-solid fa-chevron-right"></i>
@@ -95,4 +99,3 @@
 </body>
 
 </html>
-
