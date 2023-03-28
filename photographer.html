@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-
   <title>Fisheye - photographe </title>
 </head>
 
@@ -18,31 +17,26 @@
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" id="openModal" ">Contactez-moi</button>
     </div>
-    <div class="photographe__medias">
-      <div class="sort-container">
-        <span id="sort-by">Trier par</span>
-        <div id="sort-menu">
+    <div class=" photographe__medias">
+        <div class="sort-container">
+          <span id="sort-by">Trier par</span>
+          <div id="sort-menu">
 
-          <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" id="sort-options-button"><i
-              class="fa-solid fa-chevron-down toggle-icon"></i> </button>
+            <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" aria-label="Order-by"
+              id="sort-options-button"><i class="fa-solid fa-chevron-down toggle-icon"></i> </button>
 
-
-          <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
-            <button id="option1" class="choosen-option" aria-activedescendant="sort-options"
-              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Date</button>
-            <button id="option2" class="choosen-option" aria-activedescendant="sort-options"
-              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Popularité</button>
-            <button id="option3" class="choosen-option" aria-activedescendant="sort-options"
-              aria-selected="sort-otpions" aria-labelledby="sort-options" role="listbox">Titre</button>
-
+            <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
+              <button class="choosen-option" aria-selected="true" role="option">Date</button>
+              <button class="choosen-option" aria-selected="false" role="option">Popularité</button>
+              <button class="choosen-option" aria-selected="false" role="option">Titre</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="photographe__article__container">
+        <div class="photographe__article__container">
 
-      </div>
+        </div>
     </div>
     <div id="total__likes__container">
 

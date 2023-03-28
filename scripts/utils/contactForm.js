@@ -5,13 +5,13 @@ const contactButton = document.querySelector(
   "#main > div.photograph-header > button"
 );
 
-function displayModal() {
+function displayModal(name) {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   header.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "hidden";
-  title.textContent = `Contactez-moi ${photographerName}`;
+  title.textContent = `Contactez-moi ${name}`;
   // gere le focus lorsque la modal est ouverte
   focusModals("modal");
 }

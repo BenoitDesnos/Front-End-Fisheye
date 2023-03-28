@@ -22,6 +22,7 @@ const createContentLightbox = (currentIndex, typeOfMedia) => {
   );
   // on recupère les attributs et les passons au nouveau média créé
   newMedia.setAttribute("src", attributesContainer.getAttribute("src"));
+  newMedia.setAttribute("title", attributesContainer.getAttribute("title"));
   newMedia.setAttribute("alt", attributesContainer.getAttribute("alt"));
   newMedia.setAttribute(
     "data-index",
@@ -29,7 +30,7 @@ const createContentLightbox = (currentIndex, typeOfMedia) => {
   );
   newMedia.classList.add("lightboxImage");
   //créé titre du média
-  mediaTitle.textContent = attributesContainer.getAttribute("alt");
+  mediaTitle.textContent = attributesContainer.getAttribute("title");
 };
 
 const displayContentLightbox = (e, typeOfMedia) => {

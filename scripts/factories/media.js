@@ -16,7 +16,7 @@ function mediaFactory(data, lengthArray, index) {
     media = document.createElement("video");
   }
   media.setAttribute("src", picture);
-  media.setAttribute("alt", title);
+  media.setAttribute("alt", title + ", closeup view");
   media.setAttribute("title", title);
   media.setAttribute("tabindex", "0");
   media.classList.add("linkToLightbox");
@@ -25,7 +25,7 @@ function mediaFactory(data, lengthArray, index) {
   titleElement.textContent = title;
 
   const likesElement = document.createElement("button");
-  likesElement.innerHTML = `<p class="likes likeRef">${likes}</p> <i class="fa-solid fa-heart likeRef"></i>`;
+  likesElement.innerHTML = `<span class="likes likeRef" aria-label="likes">${likes}</span> <i class="fa-solid fa-heart likeRef"></i>`;
   likesElement.setAttribute("class", "like__button");
   likesElement.setAttribute("title", title);
 
@@ -33,7 +33,7 @@ function mediaFactory(data, lengthArray, index) {
   let totalLikesElement;
   if (index == lengthArray - 1) {
     totalLikesElement = document.createElement("span");
-    totalLikesElement.innerHTML = `<p class="total__likes">${totalLikes}</p> <i class="fa-solid fa-heart"></i>`;
+    totalLikesElement.innerHTML = `<span class="total__likes">${totalLikes}</span> <i class="fa-solid fa-heart"></i>`;
   }
 
   function getMediasDOM() {

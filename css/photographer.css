@@ -79,7 +79,7 @@ main {
   font-weight: 700;
   padding: 0;
 }
-.like__button p {
+.like__button span {
   margin: 0;
   margin-right: 5px;
 }

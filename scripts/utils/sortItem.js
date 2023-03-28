@@ -7,30 +7,6 @@ menuTrigger.addEventListener("click", () => {
   toggleSortElement();
 });
 
-function sortOptions(e) {
-  let newSort = e.target.textContent;
-  let oldSort = options[0].textContent;
-  e.target.textContent = oldSort;
-  options[0].textContent = newSort;
-  switchProjects(newSort);
-  menuTrigger.focus();
-}
-chooseSortElement();
-function chooseSortElement() {
-  options[0].addEventListener("click", (e) => {
-    sortOptions(e);
-    toggleSortElement();
-  });
-  options[1].addEventListener("click", (e) => {
-    sortOptions(e);
-    toggleSortElement();
-  });
-  options[2].addEventListener("click", (e) => {
-    sortOptions(e);
-    toggleSortElement();
-  });
-}
-
 function toggleSortElement() {
   if (optionContainer.style.height === "180px") {
     menuTrigger.setAttribute("aria-expanded", "false");
@@ -49,7 +25,31 @@ function toggleSortElement() {
   }
 }
 
-function switchProjects(sortText) {
+function sortOptions(e) {
+  let newSort = e.target.textContent;
+  let oldSort = options[0].textContent;
+  e.target.textContent = oldSort;
+  options[0].textContent = newSort;
+  switchToSort(newSort);
+  menuTrigger.focus();
+}
+chooseSortElement();
+function chooseSortElement() {
+  options[0].addEventListener("click", (e) => {
+    sortOptions(e);
+    toggleSortElement();
+  });
+  options[1].addEventListener("click", (e) => {
+    sortOptions(e);
+    toggleSortElement();
+  });
+  options[2].addEventListener("click", (e) => {
+    sortOptions(e);
+    toggleSortElement();
+  });
+}
+
+function switchToSort(sortText) {
   switch (sortText) {
     case "Titre":
       sortBy("Title", getTitle);
@@ -60,7 +60,6 @@ function switchProjects(sortText) {
     case "Popularité":
       sortBy("Popularity", getLikes);
       break;
-
     default:
       break;
   }
@@ -86,7 +85,6 @@ function sortBy(sortType, elementToSort) {
       const dataIndexToUpdate = el.querySelector(".linkToLightbox");
       dataIndexToUpdate.setAttribute("data-index", index);
       parent.appendChild(el);
-      return dataIndexToUpdate;
     });
 }
 

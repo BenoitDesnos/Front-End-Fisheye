@@ -1,9 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-let photographerName = "";
 
-function photographerFactory(data) {
+function photographerFactory(data, isAh1) {
   const { name, portrait, city, country, tagline, price, id } = data;
-  photographerName = name;
 
   const picture = `assets/photographers/${portrait}`;
   const article = document.createElement("article");
@@ -16,8 +14,10 @@ function photographerFactory(data) {
   const portraitElement = document.createElement("img");
   portraitElement.setAttribute("src", picture);
   portraitElement.setAttribute("alt", `Photo ${name}`);
-
-  const nameElement = document.createElement("h2");
+  let nameElement;
+  isAh1 === true
+    ? (nameElement = document.createElement("h1"))
+    : (nameElement = document.createElement("h2"));
   nameElement.textContent = name;
 
   const locationElement = document.createElement("h3");

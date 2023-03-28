@@ -13,10 +13,12 @@ function displayPhotographerData({ photographers, media }) {
   const photographersSection = document.querySelector(".photograph-header");
   photographers.forEach((photographer) => {
     if (photographer.id == id) {
-      const photographerModel = photographerFactory(photographer);
+      const photographerModel = photographerFactory(photographer, true);
       const userCardDOM = photographerModel.getPhotographerDOM();
-
       photographersSection.appendChild(userCardDOM);
+      openModal.addEventListener("click", () => {
+        displayModal(photographerModel.name);
+      });
     }
   });
   // display project/media data of photographer
@@ -28,7 +30,6 @@ function displayPhotographerData({ photographers, media }) {
   mediaFiltered.forEach((project, index) => {
     const medias = mediaFactory(project, mediaFiltered.length, index);
     const mediasDOM = medias.getMediasDOM();
-
     photographerMedias.appendChild(mediasDOM);
   });
   openLightbox();
