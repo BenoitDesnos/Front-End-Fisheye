@@ -27,6 +27,7 @@ function mediaFactory(data, lengthArray, index) {
   const likesElement = document.createElement("button");
   likesElement.innerHTML = `<span class="likes likeRef" aria-label="likes">${likes}</span> <i class="fa-solid fa-heart likeRef"></i>`;
   likesElement.setAttribute("class", "like__button");
+  likesElement.setAttribute("aria-label", "likes button");
   likesElement.setAttribute("title", title);
 
   // create element when in last loop.

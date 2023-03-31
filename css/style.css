@@ -59,6 +59,12 @@ h1 {
   font-size: 36px;
   font-weight: 400;
 }
+.photographer_section article h1 {
+  margin-top: 20px;
+  color: #d3573c;
+  font-size: 36px;
+  font-weight: 400;
+}
 .photographer_section article h3 {
   color: #901c1c;
   font-size: 20px;

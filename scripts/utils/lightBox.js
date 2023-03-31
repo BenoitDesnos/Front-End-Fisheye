@@ -43,7 +43,7 @@ const displayContentLightbox = (e, typeOfMedia) => {
   else {
     currentIndex = parseInt(e.target.getAttribute("data-index"));
     createContentLightbox(currentIndex, e.target.localName);
-    console.log(currentIndex, links.length - 1);
+
     currentIndex === 0
       ? hideLeftArrow()
       : currentIndex === links.length - 1
@@ -72,7 +72,6 @@ function removeContentLightBox() {
 }
 
 const scrollContentLightbox = () => {
-  console.log("scroll");
   removeContentLightBox();
   if (links[currentIndex].localName === "video") {
     displayContentLightbox(null, "video");

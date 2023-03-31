@@ -12,31 +12,31 @@
 <body>
   <header>
     <a href="/" aria-label="Lien vers page d'accueil">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" id="openModal" ">Contactez-moi</button>
+      <button class="contact_button" id="openModal" aria-label="Contact Me">Contactez-moi</button>
     </div>
     <div class=" photographe__medias">
-        <div class="sort-container">
-          <span id="sort-by">Trier par</span>
-          <div id="sort-menu">
+      <div class="sort-container">
+        <span id="sort-by">Trier par</span>
+        <div id="sort-menu">
 
-            <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" aria-label="Order-by"
-              id="sort-options-button"><i class="fa-solid fa-chevron-down toggle-icon"></i> </button>
+          <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" aria-label="Order-by"
+            id="sort-options-button"><i class="fa-solid fa-chevron-down toggle-icon"></i> </button>
 
-            <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
-              <button class="choosen-option" aria-selected="true" role="option">Date</button>
-              <button class="choosen-option" aria-selected="false" role="option">Popularité</button>
-              <button class="choosen-option" aria-selected="false" role="option">Titre</button>
-            </div>
+          <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
+            <button class="choosen-option" aria-selected="true" role="option">Date</button>
+            <button class="choosen-option" aria-selected="false" role="option">Popularité</button>
+            <button class="choosen-option" aria-selected="false" role="option">Titre</button>
           </div>
         </div>
-        <div class="photographe__article__container">
+      </div>
+      <div class="photographe__article__container">
 
-        </div>
+      </div>
     </div>
     <div id="total__likes__container">
 
@@ -65,15 +65,15 @@
       </form>
     </div>
   </div>
-  <div id="lightbox" aria-hidden="true" role="dialog">
+  <div id="lightbox" aria-hidden="true" role="dialog" aria-label="image closeup view">
     <div id="lightboxContainer">
-      <button class="lightbox__close" aria-label="bouton de fermeture">
+      <button class="lightbox__close" aria-label="close dialog">
         <i class=" fa-solid fa-xmark"></i>
       </button>
-      <button class="lightbox__prev" aria-label="fleche gauche">
+      <button class="lightbox__prev" aria-label="previous image">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
-      <button class="lightbox__next" aria-label="fleche droite">
+      <button class="lightbox__next" aria-label="next image">
         <i class=" fa-solid fa-chevron-right"></i>
       </button>
     </div>
