@@ -10,6 +10,24 @@ let newMedia;
 let mediaTitle;
 
 /* -------------------- fn de gestion du contenu de la lightbox------------------- */
+
+// fn permettant de lancer les eventlistener dans scripts > pages > photographer.js > displayPhotographerData()
+async function openLightbox() {
+  for (let i = 0; i < links.length; i++) {
+    links[i].setAttribute("data-index", i);
+    links[i].addEventListener("click", (e) => displayContentLightbox(e));
+    links[i].addEventListener("keydown", (e) => {
+      if (
+        lightbox.getAttribute("aria-hidden") == "true" &&
+        (e.key === "Enter" || e.key === " ") // spaceBar key
+      ) {
+        e.preventDefault();
+        displayContentLightbox(e);
+      }
+    });
+  }
+}
+
 // crée un élément dynamiquement selon le type de média passé en argument
 const createContentLightbox = (currentIndex, typeOfMedia) => {
   newMedia = document.createElement(typeOfMedia);
@@ -92,22 +110,6 @@ function lightboxControls() {
       closeLightbox();
     }
   });
-}
-// fn permettant de lancer les eventlistener dans scripts > pages > photographer.js > displayPhotographerData()
-function openLightbox() {
-  for (let i = 0; i < links.length; i++) {
-    links[i].setAttribute("data-index", i);
-    links[i].addEventListener("click", (e) => displayContentLightbox(e), null);
-    links[i].addEventListener("keydown", (e) => {
-      if (
-        (lightbox.getAttribute("aria-hidden") == "true" && e.key === "Enter") ||
-        e.key === " " // spaceBar key
-      ) {
-        e.preventDefault();
-        displayContentLightbox(e);
-      }
-    });
-  }
 }
 
 function closeLightbox() {

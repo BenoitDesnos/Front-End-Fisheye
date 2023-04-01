@@ -1,24 +1,24 @@
-function getPhotographers() {
-  fetch("../../data/photographers.json")
-    .then((res) => res.json())
-    .then((data) => {
-      switch (window.location.pathname) {
-        case "/":
-          displayHomeData(data);
-          break;
-        case "/photographer.html":
-          displayPhotographerData(data);
-          break;
+async function getPhotographers() {
+  const response = await fetch("../../data/photographers.json");
+  const photographers = await response.json();
+  console.log(photographers);
+  return photographers;
+}
 
-        default:
-          //displayError404
-          break;
-      }
-    })
-    .catch((err) =>
-      console.log(
-        "Une erreur s'est produite sur la fonction getPhotographers ",
-        err
-      )
-    );
+async function init() {
+  // Récupère les datas des photographes
+  const { photographers, media } = await getPhotographers();
+  console.log(photographers);
+  switch (window.location.pathname) {
+    case "/":
+      displayHomeData(photographers);
+      break;
+    case "/photographer.html":
+      displayPhotographerData(photographers, media);
+      break;
+
+    default:
+      //displayError404
+      break;
+  }
 }

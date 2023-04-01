@@ -1,4 +1,5 @@
 let totalLikes = 0;
+
 function mediaFactory(data, lengthArray, index) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
   totalLikes += likes;

@@ -1,4 +1,4 @@
-function displayHomeData({ photographers }) {
+async function displayHomeData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer, false);
@@ -6,5 +6,4 @@ function displayHomeData({ photographers }) {
     photographersSection.appendChild(userCardDOM);
   });
 }
-
-getPhotographers();
+init();
