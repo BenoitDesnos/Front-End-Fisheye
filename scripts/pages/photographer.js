@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 const submitButton = document.querySelector(
-  "#contact_modal > div > form > button"
+  "#contact_modal > #modal > form > button"
 );
 const inputsList = document.querySelectorAll("form > div > input");
 const likesContainer = document.getElementById("total__likes__container");
@@ -55,7 +55,6 @@ function addLike() {
   );
 
   imageContainer.addEventListener("click", (e) => {
-    console.log(e.target.localName);
     let button = e.target.closest("button")
       ? e.target.closest("button")
       : e.target.localName === "button"

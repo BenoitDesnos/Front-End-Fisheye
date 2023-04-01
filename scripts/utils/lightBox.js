@@ -16,7 +16,7 @@ const createContentLightbox = (currentIndex, typeOfMedia) => {
   mediaTitle = document.createElement("span");
   // on récupère le média qui contient les attributs suivant ou précédent grace à currentIndex
   const attributesContainer = document.querySelector(
-    `div.photographe__article__container > article:nth-child(${
+    `.photographe__article__container > article:nth-child(${
       currentIndex + 1
     }) > ${typeOfMedia}`
   );

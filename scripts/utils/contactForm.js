@@ -2,7 +2,7 @@ const modal = document.getElementById("contact_modal");
 const header = document.querySelector("header");
 const title = document.querySelector("header > h2");
 const contactButton = document.querySelector(
-  "#main > div.photograph-header > button"
+  "#main > .photograph-header > button"
 );
 
 function displayModal(name) {
