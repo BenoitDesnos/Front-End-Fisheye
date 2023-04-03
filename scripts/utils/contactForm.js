@@ -1,10 +1,3 @@
-const modal = document.getElementById("contact_modal");
-const header = document.querySelector("header");
-const title = document.querySelector("header > h2");
-const contactButton = document.querySelector(
-  "#main > .photograph-header > button"
-);
-
 function displayModal(name) {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");

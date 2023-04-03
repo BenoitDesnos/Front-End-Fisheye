@@ -1,5 +1,3 @@
-let totalLikes = 0;
-
 function mediaFactory(data, lengthArray, index) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
   totalLikes += likes;
@@ -18,7 +16,6 @@ function mediaFactory(data, lengthArray, index) {
   }
   media.setAttribute("src", picture);
   media.setAttribute("alt", title + ", closeup view");
-  media.setAttribute("title", title);
   media.setAttribute("tabindex", "0");
   media.classList.add("linkToLightbox");
 
@@ -28,7 +25,7 @@ function mediaFactory(data, lengthArray, index) {
   const likesElement = document.createElement("button");
   likesElement.innerHTML = `<span class="likes likeRef" aria-label="likes">${likes}</span> <i class="fa-solid fa-heart likeRef"></i>`;
   likesElement.setAttribute("class", "like__button");
-  likesElement.setAttribute("aria-label", "likes button");
+  likesElement.setAttribute("aria-label", "likes");
   likesElement.setAttribute("title", title);
 
   // create element when in last loop.

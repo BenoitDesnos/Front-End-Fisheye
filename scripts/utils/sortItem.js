@@ -1,8 +1,3 @@
-const optionContainer = document.getElementById("sort-options");
-const menuTrigger = document.getElementById("sort-options-button");
-const options = document.querySelectorAll(".choosen-option");
-const toggleIcon = document.querySelector(".toggle-icon");
-
 menuTrigger.addEventListener("click", () => {
   toggleSortElement();
 });

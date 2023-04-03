@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,22 +12,20 @@
 <body>
   <header>
     <a href="/" aria-label="Lien vers page d'accueil">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page">
     </a>
   </header>
   <main id="main">
     <header class="photograph-header">
       <button class="contact_button" id="openModal" aria-label="Contact Me">Contactez-moi</button>
     </header>
-    <article class=" photographe__medias">
+    <article class="photographe__medias">
       <section class="sort-container">
         <span id="sort-by">Trier par</span>
         <div id="sort-menu">
-
-          <button type="button" aria-haspopup="listbox" aria-expanded="false" role="button" aria-label="Order-by"
-            id="sort-options-button"><i class="fa-solid fa-chevron-down toggle-icon"></i> </button>
-
-          <div id="sort-options" role="listbox" , aria-haspopup=”listbox”, aria-expanded="false">
+          <button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Order-by"
+            id="sort-options-button"><em class="fa-solid fa-chevron-down toggle-icon"></em> </button>
+          <div id="sort-options" role="listbox" aria-expanded="false">
             <button class="choosen-option" aria-selected="true" role="option">Date</button>
             <button class="choosen-option" aria-selected="false" role="option">Popularité</button>
             <button class="choosen-option" aria-selected="false" role="option">Titre</button>
@@ -42,12 +40,12 @@
 
     </article>
   </main>
-  <article id="contact_modal" aria-hidden="true" role="dialog" aria-labelledby="modal__title">
+  <dialog id="contact_modal" aria-hidden="true" aria-labelledby="modal__title">
     <section id="modal">
       <header>
         <h2 id="modal__title">Contactez-moi</h2>
         <button id="closeBtn" onclick="closeModal()">
-          <img src="assets/icons/close.svg" alt="closing element" />
+          <img src="assets/icons/close.svg" alt="closing element">
         </button>
       </header>
       <form>
@@ -64,31 +62,32 @@
         <button type="submit" class="contact_button">Envoyer</button>
       </form>
     </section>
-  </article>
-  <article id="lightbox" aria-hidden="true" role="dialog" aria-label="image closeup view">
+  </dialog>
+  <dialog id="lightbox" aria-hidden="true" aria-label="image closeup view">
     <section id="lightboxContainer">
       <button class="lightbox__close" aria-label="close dialog">
-        <i class=" fa-solid fa-xmark"></i>
+        <em class=" fa-solid fa-xmark"></em>
       </button>
       <button class="lightbox__prev" aria-label="previous image">
-        <i class="fa-solid fa-chevron-left"></i>
+        <em class="fa-solid fa-chevron-left"></em>
       </button>
       <button class="lightbox__next" aria-label="next image">
-        <i class=" fa-solid fa-chevron-right"></i>
+        <em class=" fa-solid fa-chevron-right"></em>
       </button>
     </section>
-  </article>
+  </dialog>
 
 
 
+  <script src="scripts/utils/globalsVariables.js"></script>
   <script src="scripts/utils/fetch.js"></script>
-  <script src="scripts/factories/photographer.js"></script>
-  <script src="scripts/factories/media.js"></script>
-  <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
   <script src="scripts/utils/focusModals.js"></script>
   <script src="scripts/utils/lightBox.js"></script>
   <script src="scripts/utils/sortItem.js"></script>
+  <script src="scripts/factories/photographer.js"></script>
+  <script src="scripts/factories/media.js"></script>
+  <script src="scripts/pages/photographer.js"></script>
   <script src="https://kit.fontawesome.com/0152501894.js" crossorigin="anonymous"></script>
 </body>
 

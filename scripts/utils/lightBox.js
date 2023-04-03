@@ -1,14 +1,3 @@
-const links = document.getElementsByClassName("linkToLightbox");
-const lightbox = document.querySelector("#lightbox");
-const leftArrow = document.querySelector(".lightbox__prev");
-const rightArrow = document.querySelector(".lightbox__next");
-const lightBoxClose = document.querySelector(".lightbox__close");
-
-let currentIndex;
-let currentMedia;
-let newMedia;
-let mediaTitle;
-
 /* -------------------- fn de gestion du contenu de la lightbox------------------- */
 
 // fn permettant de lancer les eventlistener dans scripts > pages > photographer.js > displayPhotographerData()
